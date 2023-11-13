@@ -1,9 +1,3 @@
-/**
- * @author Aaron Carpenter - acarpenter5@dmacc.edu
- * CIS175 - Fall 2023
- * Nov 13, 2023
- */
-
 package dmacc.controller;
 
 import dmacc.model.User;
