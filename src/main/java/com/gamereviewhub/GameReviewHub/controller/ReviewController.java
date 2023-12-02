@@ -1,9 +1,9 @@
-package dmacc.controller;
+package com.gamereviewhub.gamereviewhub.controller;
 
-import dmacc.beans.Game;
-import dmacc.beans.Review;
-import dmacc.repository.GameRepository;
-import dmacc.repository.ReviewRepository;
+import com.gamereviewhub.gamereviewhub.model.Game;
+import com.gamereviewhub.gamereviewhub.model.Review;
+import com.gamereviewhub.gamereviewhub.repository.GameRepository;
+import com.gamereviewhub.gamereviewhub.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-/**
- * The ReviewController class is responsible for handling HTTP requests related to reviews.
- * It provides methods for listing reviews by game or user, creating new reviews, updating existing reviews,
- * deleting reviews, and handling error cases.
- */
 @Controller
 @RequestMapping("/reviews")
 public class ReviewController {
@@ -101,4 +96,5 @@ public class ReviewController {
 	public String showErrorPage() {
 		return "error";
 	}
+
 }
