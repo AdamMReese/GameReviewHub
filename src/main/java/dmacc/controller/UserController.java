@@ -43,7 +43,7 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestParam String username, @RequestParam String password, HttpSession session) {
+	public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Object o) {
 		User user = userRepository.findByUsernameAndPassword(username, password);
 		if (user != null) {
 			session.setAttribute("userId", user.getUserId());

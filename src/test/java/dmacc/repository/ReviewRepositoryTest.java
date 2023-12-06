@@ -1,15 +1,14 @@
-package dmacc;
+package dmacc.repository;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import dmacc.model.Review;
-import dmacc.repository.ReviewRepository;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import dmacc.beans.Review;
 
 @DataJpaTest
 public class ReviewRepositoryTest {
@@ -28,7 +27,7 @@ public class ReviewRepositoryTest {
 		review2.setId(1L);
 		reviewRepository.save(review2);
 
-		List<Review> reviews = reviewRepository.findByGameId(1L);
+		List<Review> reviews = reviewRepository.findByGame_GameId(1L);
 		assertEquals(2, reviews.size());
 	}
 }

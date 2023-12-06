@@ -6,22 +6,19 @@
 
 package dmacc.controller;
 
-import dmacc.model.User;
-import dmacc.repository.UserRepository;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.servlet.http.HttpSession;
+import dmacc.beans.User;
+import dmacc.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-
-@RunWith(SpringRunner.class)
 @SpringBootTest
 class UserControllerTest {
 
@@ -69,4 +66,3 @@ class UserControllerTest {
         assertEquals("redirect:/ErrorUserPass.html", result);
     }
 }
-

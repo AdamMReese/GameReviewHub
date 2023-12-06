@@ -1,6 +1,6 @@
 package dmacc.controller;
 
-import dmacc.model.User;
+import dmacc.beans.User;
 import dmacc.repository.UserRepository;
 
 import javax.servlet.http.HttpSession;

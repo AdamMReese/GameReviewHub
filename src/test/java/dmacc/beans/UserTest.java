@@ -4,7 +4,7 @@
  * Nov 13, 2023
  */
 
-package dmacc.model;
+package dmacc.beans;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

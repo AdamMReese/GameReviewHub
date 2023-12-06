@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="UTF-8">
     <title>My Spring Web App</title>
@@ -9,18 +9,17 @@
     <div id="container">
           <nav>
 		    <ul>
-		        <li><a th:href="@{/index}" >Home</a></li>
-		        <li><a th:href="@{/Catalog}">Catalog</a></li>
-		        <li><a th:href="@{/Register}" >Register</a></li>
-		        <li><a th:href="@{/Review}" class="active">Add Reviews</a></li>
-		        <li><a th:href="@{/Contact}">Contact us</a></li>
+		        <li><a th:href="@{/index}">Home</a></li>
+		        <li><a th:href="@{/catalog}">Catalog</a></li>
+		        <li><a th:href="@{/register}">Register</a></li>
+		        <li><a th:href="@{/review}" class="active">Add Reviews</a></li>
+		        <li><a th:href="@{/contact}">Contact Us</a></li>
 		    </ul>
 		</nav>
-	  <footer>
-            <p>Java 2</p>
-        </footer>
+		<footer>
+			<p>&copy; 2023 Game Review Hub. All rights reserved.</p>
+		</footer>
     </div>
 
-    <p th:text="${message}"></p>
 </body>
 </html>

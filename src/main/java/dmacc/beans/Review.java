@@ -1,13 +1,19 @@
 package dmacc.beans;
 
-import jakarta.persistence.*;
+import java.util.Objects;
+
+import org.hibernate.proxy.HibernateProxy;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.proxy.HibernateProxy;
-
-import java.util.Objects;
 
 /**
  * The Review class represents a review for a game in the Game Review Hub application.
@@ -30,7 +36,7 @@ public class Review {
 	private Game game;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id", referencedColumnName = "userId")
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
 	private User user;
 
 	@Override
@@ -57,4 +63,6 @@ public class Review {
 				? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode()
 				: getClass().hashCode();
 	}
+
+	
 }

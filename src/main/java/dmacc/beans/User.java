@@ -35,8 +35,8 @@ public class User {
 	/**
 	 * Constructs a User object with the specified username and password.
 	 * 
-	 * @param username the username of the user
-	 * @param password the password of the user
+	 * @param username - the username of the user
+	 * @param password - the password of the user
 	 */
 	public User(String username, String password) {
 		this.username = username;
