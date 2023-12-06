@@ -1,8 +1,7 @@
 package dmacc.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import dmacc.beans.Game;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * This interface represents a repository for managing Game entities.

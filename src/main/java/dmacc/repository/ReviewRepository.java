@@ -6,11 +6,10 @@
 
 package dmacc.repository;
 
-import java.util.List;
-
+import dmacc.beans.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import dmacc.beans.Review;
+import java.util.List;
 
 /**
  * The ReviewRepository interface provides methods for accessing and manipulating Review objects in the database.

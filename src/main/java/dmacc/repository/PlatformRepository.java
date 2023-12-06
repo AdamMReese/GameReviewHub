@@ -6,10 +6,9 @@
 
 package dmacc.repository;
 
+import dmacc.beans.Platform;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import dmacc.beans.Platform;
 
 /**
  * This interface represents a repository for managing Platform entities.

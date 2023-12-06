@@ -1,9 +1,12 @@
 package dmacc.beans;
 
-import lombok.*;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.proxy.HibernateProxy;
 
-import jakarta.persistence.*;
 import java.util.Objects;
 
 /**

@@ -42,7 +42,7 @@ public class ViewController {
 	public String viewPlatforms(Model model) {
 		List<Platform> platforms = platformRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
 		model.addAttribute("platforms", platforms);
-		return "view-platforms";
+		return "view-platforms"; // view-platforms.html
 	}
 
 	// View all games in alphabetical order
@@ -50,7 +50,7 @@ public class ViewController {
 	public String viewGames(Model model) {
 		List<Game> games = gameRepository.findAll(Sort.by(Sort.Direction.ASC, "title"));
 		model.addAttribute("games", games);
-		return "view-games";
+		return "view-games"; // view-games.html
 	}
 
 	// View a particular game and its reviews
@@ -64,9 +64,9 @@ public class ViewController {
 					.collect(Collectors.toList());
 			model.addAttribute("game", game);
 			model.addAttribute("reviews", reviews);
-			return "view-game";
+			return "view-game"; // view-game.html
 		} else {
-			return "redirect:/error";
+			return "redirect:/error"; // error.html
 		}
 	}
 }

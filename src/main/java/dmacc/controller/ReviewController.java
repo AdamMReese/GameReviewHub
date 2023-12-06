@@ -4,7 +4,6 @@ import dmacc.beans.Game;
 import dmacc.beans.Review;
 import dmacc.repository.GameRepository;
 import dmacc.repository.ReviewRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,24 +19,27 @@ import java.util.Optional;
 @RequestMapping("/reviews")
 public class ReviewController {
 
-	@Autowired
-	private ReviewRepository reviewRepository;
+	private final ReviewRepository reviewRepository;
 
-	@Autowired
-	private GameRepository gameRepository;
+	private final GameRepository gameRepository;
+
+	public ReviewController(ReviewRepository reviewRepository, GameRepository gameRepository) {
+		this.reviewRepository = reviewRepository;
+		this.gameRepository = gameRepository;
+	}
 
 	// List reviews for a particular game
 	@GetMapping("/list/{gameId}")
 	public String listReviewsByGame(@PathVariable Long gameId, Model model) {
 		model.addAttribute("reviews", reviewRepository.findByGame_GameId(gameId));
-		return "review-list";
+		return "review-list"; // review-list.html
 	}
 
 	// List reviews by a particular user
 	@GetMapping("/list/user/{userId}")
 	public String listReviewsByUser(@PathVariable Long userId, Model model) {
 		model.addAttribute("reviews", reviewRepository.findByUser_UserId(userId));
-		return "review-list";
+		return "review-list"; // review-list.html
 	}
 
 	// Form for creating a new review
@@ -47,9 +49,9 @@ public class ReviewController {
 		if (game.isPresent()) {
 			model.addAttribute("game", game.get());
 			model.addAttribute("review", new Review());
-			return "review-form";
+			return "review-form"; // review-form.html
 		}
-		return "redirect:/error";
+		return "redirect:/error"; // error.html
 	}
 
 	// Form for updating an existing review
@@ -58,9 +60,9 @@ public class ReviewController {
 		Optional<Review> review = reviewRepository.findById(reviewId);
 		if (review.isPresent()) {
 			model.addAttribute("review", review.get());
-			return "review-form";
+			return "review-form"; // review-form.html
 		}
-		return "redirect:/error";
+		return "redirect:/error"; // error.html
 	}
 
 	// Saving a new or updated review
@@ -68,10 +70,10 @@ public class ReviewController {
 	public String saveReview(@ModelAttribute Review review) {
 		reviewRepository.save(review);
 		if (review.getGame() != null) {
-			return "redirect:/reviews/list/" + review.getGame().getGameId();
+			return "redirect:/reviews/list/" + review.getGame().getGameId(); // review-list.html
 		} else {
 			// handle the error cases by redirecting to an error page
-			return "redirect:/error";
+			return "redirect:/error"; // error.html
 		}
 	}
 
@@ -84,21 +86,21 @@ public class ReviewController {
 			Game game = reviewObj.getGame();
 			if (game != null) {
 				reviewRepository.delete(reviewObj);
-				return "redirect:/reviews/list/" + game.getGameId();
+				return "redirect:/reviews/list/" + game.getGameId(); // review-list.html
 			} else {
 				// Add a log statement to help debug why game is null
 				System.err.println("Game is null for reviewId: " + reviewId);
 				// Since the game is null, redirect to a generic reviews list page or another
 				// page that makes sense in your application
-				return "redirect:/reviews/list";
+				return "redirect:/reviews/list"; // review-list.html
 			}
 		}
-		return "redirect:/error";
+		return "redirect:/error"; // error.html
 	}
 
 	// Redirect to error page
 	@GetMapping
 	public String showErrorPage() {
 		return "error";
-	}
+	} // error.html
 }

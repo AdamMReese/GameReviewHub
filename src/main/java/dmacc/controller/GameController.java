@@ -4,14 +4,12 @@ import dmacc.beans.Game;
 import dmacc.beans.Platform;
 import dmacc.repository.GameRepository;
 import dmacc.repository.PlatformRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,17 +21,20 @@ import java.util.Optional;
 @RequestMapping("/games")
 public class GameController {
 
-	@Autowired
-	private GameRepository gameRepository;
+	private final GameRepository gameRepository;
 
-	@Autowired
-	private PlatformRepository platformRepository;
+	private final PlatformRepository platformRepository;
+
+	public GameController(GameRepository gameRepository, PlatformRepository platformRepository) {
+		this.gameRepository = gameRepository;
+		this.platformRepository = platformRepository;
+	}
 
 	@GetMapping("/list")
 	public String listGames(Model model) {
 		List<Game> games = gameRepository.findAll();
 		model.addAttribute("games", games);
-		return "list-games";
+		return "list-games"; // list-games.html
 	}
 
 	@GetMapping("/add")
@@ -41,16 +42,16 @@ public class GameController {
 		List<Platform> platforms = platformRepository.findAll();
 		model.addAttribute("platforms", platforms);
 		model.addAttribute("game", new Game());
-		return "add-update-game";
+		return "add-update-game"; // add-update-game.html
 	}
 
 	@PostMapping("/add")
 	public String addGame(@Valid @ModelAttribute Game game, BindingResult result) {
 		if (result.hasErrors()) {
-			return "add-update-game";
+			return "add-update-game"; // add-update-game.html
 		}
 		gameRepository.save(game);
-		return "redirect:/games/view/" + game.getGameId();
+		return "redirect:/games/view/" + game.getGameId(); // redirect to view-game.html
 	}
 
 	@GetMapping("/view/{id}")
@@ -58,9 +59,9 @@ public class GameController {
 		Optional<Game> optionalGame = gameRepository.findById(id);
 		if (optionalGame.isPresent()) {
 			model.addAttribute("game", optionalGame.get());
-			return "view-game";
+			return "view-game"; // view-game.html
 		} else {
-			return "redirect:/error";
+			return "redirect:/error"; // error.html
 		}
 	}
 
@@ -71,15 +72,15 @@ public class GameController {
 			List<Platform> platforms = platformRepository.findAll();
 			model.addAttribute("platforms", platforms);
 			model.addAttribute("game", optionalGame.get());
-			return "add-update-game";
+			return "add-update-game"; // add-update-game.html
 		} else {
-			return "redirect:/error";
+			return "redirect:/error"; // error.html
 		}
 	}
 
 	@PostMapping("/delete/{id}")
 	public String deleteGame(@PathVariable Long id) {
 		gameRepository.deleteById(id);
-		return "redirect:/games/list";
+		return "redirect:/games/list"; // redirect to list-games.html
 	}
 }
