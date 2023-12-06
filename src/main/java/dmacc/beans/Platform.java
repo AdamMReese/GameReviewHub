@@ -32,4 +32,8 @@ public class Platform {
 	@OneToMany(mappedBy = "platform")
 	@ToString.Exclude
 	private List<Game> games;
+
+    public Long getId() {
+        return null;
+    }
 }

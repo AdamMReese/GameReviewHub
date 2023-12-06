@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 import dmacc.beans.Game;
 import dmacc.beans.Platform;
@@ -68,6 +69,8 @@ class GameControllerTest {
     @Test
     void testAddGameWithErrors() {
         Game game = new Game();
+        BindingResult result = mock(BindingResult.class);
+        when(result.hasErrors()).thenReturn(true);
         when(result.hasErrors()).thenReturn(true);
 
         String viewName = gameController.addGame(game, result);
@@ -79,6 +82,8 @@ class GameControllerTest {
     @Test
     void testAddGameWithoutErrors() {
         Game game = new Game();
+        BindingResult result = mock(BindingResult.class);
+        when(result.hasErrors()).thenReturn(false);
         when(result.hasErrors()).thenReturn(false);
 
         String viewName = gameController.addGame(game, result);

@@ -40,8 +40,8 @@ class PlatformControllerTest {
     void testListPlatforms() {
         // Arrange
         List<Platform> platforms = new ArrayList<>();
-        platforms.add(new Platform("Platform 1"));
-        platforms.add(new Platform("Platform 2"));
+        platforms.add(new Platform());
+        platforms.add(new Platform());
         when(platformRepository.findAll()).thenReturn(platforms);
 
         // Act
