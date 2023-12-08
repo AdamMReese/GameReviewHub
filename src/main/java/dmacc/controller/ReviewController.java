@@ -1,14 +1,20 @@
 package dmacc.controller;
 
+import java.util.Date;
+import java.util.Optional;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import dmacc.beans.Game;
 import dmacc.beans.Review;
 import dmacc.repository.GameRepository;
 import dmacc.repository.ReviewRepository;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * The ReviewController class is responsible for handling HTTP requests related to reviews.
@@ -68,7 +74,14 @@ public class ReviewController {
 	// Saving a new or updated review
 	@PostMapping("/save")
 	public String saveReview(@ModelAttribute Review review) {
+		if (review.getId() == null) { // New review
+			review.setDateAdded(new Date());
+		} else { // Existing review
+			review.setDateModified(new Date());
+		}
+
 		reviewRepository.save(review);
+
 		if (review.getGame() != null) {
 			return "redirect:/reviews/list/" + review.getGame().getGameId(); // review-list.html
 		} else {
