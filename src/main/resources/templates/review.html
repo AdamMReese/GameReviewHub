@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Add Review - Game Review Hub</title>
+	<link rel="stylesheet" th:href="@{/style.css}"/>
+</head>
+
+<body>
+	<div id="container">
+		<nav>
+			<ul>
+				<li><a th:href="@{/index}">Home</a></li>
+				<li><a th:href="@{/catalog}">Catalog</a></li>
+				<li><a th:href="@{/register}">Register</a></li>
+				<li><a th:href="@{/review}" class="active">Add Reviews</a></li>
+				<li><a th:href="@{/contact}">Contact Us</a></li>
+			</ul>
+		</nav>
+		<header>
+			<h1>Write a Review</h1>
+		</header>
+		<section class="form">
+			<form action="#" method="post">
+				<label for="name">Game:</label>
+				<input type="text" id="name" name="name" required>
+				<label>Platform: </label>
+				<select id="platform" name="platform" required>
+					<option value="pc">PC</option>
+					<option value="sony">Sony</option>
+					<option value="nintendo">Nintendo</option>
+					<option value="Microsoft">Microsoft</option>
+					<option value="Mobile">Mobile</option>
+					<option value="VR">VR</option>
+				</select>
+				<br>
+				<label for="message">Message:</label>
+				<textarea id="message" name="message" rows="4" required></textarea>
+
+				<button type="submit">Submit</button>
+			</form>
+		</section>
+		<footer>
+			<p>&copy; 2023 Game Review Hub. All rights reserved.</p>
+		</footer>
+	</div>
+
+</body>
+
+</html>

@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+	<title>Game Organizer</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+
+<body>
+	<a href="/add-game" class="add-button">Add a New Game</a>
+	<div>
+		<div th:each="game : ${games}" th:id="${game.id}">
+			<span th:text="${game.title}"></span>
+		</div>
+	</div>
 </body>
+
 </html>
