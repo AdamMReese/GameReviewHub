@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Platform Details</title>
+	<link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
+
 <body>
+	<div class="platform-cover">
+		<h1 th:text="${platform.title}"></h1>
+	</div>
+
+	<div class="platform-summary">
+		<center>
+			<h2>Summary</h2>
+		</center>
+		<p th:text="${platform.summary}">No summary available</p>
+	</div>
+
+	<div class="navigation-buttons">
+		<a th:href="@{/platforms/edit/{id}(id=${platform.id})}" class="edit-button">Edit</a>
+		<a th:href="@{/platforms/delete/{id}(id=${platform.id})}" class="delete-button">Delete</a>
+		<!-- Display Return to Shelf button only if the platform is associated with a shelf -->
+	<a th:if="${platform.shelf != null and platform.shelf.id != null}" th:href="@{/shelves/view/{id}(id=${platform.shelf.id})}"
+			class="back-button">Return to Shelf</a>
+	</div>
 
 </body>
+
 </html>
